@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IApartment } from '~/type/filter'
+import type { IApartment } from '~/type/apartments'
 
 const { item } = defineProps<{
   item: IApartment

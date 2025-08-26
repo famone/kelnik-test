@@ -26,6 +26,7 @@
         :max="21000000"
         :interval="100000"
         tooltip="none"
+        @drag-end="emit('updateSlider')"
       />
     </div>
     <!--  -->
@@ -42,11 +43,12 @@
         :min="20"
         :max="216"
         tooltip="none"
+        @drag-end="emit('updateSlider')"
       />
     </div>
     <button
       class="clear-btn"
-      @click="emit('reset')"
+      @click="resetFilter"
     >
       Сбросить параметры
       <IconsClose />
@@ -55,7 +57,14 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(['reset'])
+const emit = defineEmits(['reset', 'updateSlider'])
+
+const { scrollToTop } = useScroll()
+
+const resetFilter = () => {
+  scrollToTop()
+  emit('reset')
+}
 
 const selectedRoomQuantity = defineModel<number | null>('selectedRoomQuantity', { default: null })
 const cost = defineModel<number[]>('cost', { default: [0, 100] })

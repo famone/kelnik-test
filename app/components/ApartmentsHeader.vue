@@ -21,7 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import type { IColumn } from '~/type/filter'
+import type { IColumn } from '~/type/apartments'
+
+const emit = defineEmits(['onSort'])
 
 const sortableColumns = defineModel<IColumn[]>('sortableColumns', { default: [] })
 
@@ -44,6 +46,8 @@ const changeSort = (index: number) => {
     default:
       sortableItem.sortOrder = 'asc'
   }
+
+  emit('onSort')
 }
 </script>
 

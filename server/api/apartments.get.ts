@@ -4,7 +4,6 @@ import { resolve } from 'path'
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
 
-  const page = parseInt(query.page as string) || 1
   const per_page = parseInt(query.per_page as string) || 5
   const sort_by = (query.sort_by as string) || null
   const sort_order = (query.sort_order as string) || 'asc'
@@ -27,7 +26,7 @@ export default defineEventHandler(async (event) => {
     && (rooms.length === 0 || rooms.includes(a.rooms)),
   )
 
-  if (sort_by && ['price', 'area', 'rooms'].includes(sort_by)) {
+  if (sort_by && ['price', 'area', 'floor'].includes(sort_by)) {
     apartments.sort((a, b) => {
       if (sort_order === 'asc') return a[sort_by] - b[sort_by]
       return b[sort_by] - a[sort_by]
@@ -35,12 +34,10 @@ export default defineEventHandler(async (event) => {
   }
 
   const total = apartments.length
-  const pages_total = Math.ceil(total / per_page)
-  const start = (page - 1) * per_page
-  const data = apartments.slice(start, start + per_page)
+  const data = apartments.slice(0, per_page)
 
   return {
-    pages_total,
+    total,
     data,
   }
 })
