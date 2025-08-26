@@ -6,7 +6,7 @@
         :key="idx"
         :disabled="!item.enabled"
         :class="{ active: item.value === selectedRoomQuantity }"
-        @click="selectedRoomQuantity = item.value"
+        @click="changeRoom(item.value)"
       >
         {{ item.title }}
       </button>
@@ -26,7 +26,7 @@
         :max="21000000"
         :interval="100000"
         tooltip="none"
-        @drag-end="emit('updateSlider')"
+        @drag-end="emit('updateFilter')"
       />
     </div>
     <!--  -->
@@ -43,7 +43,7 @@
         :min="20"
         :max="216"
         tooltip="none"
-        @drag-end="emit('updateSlider')"
+        @drag-end="emit('updateFilter')"
       />
     </div>
     <button
@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(['reset', 'updateSlider'])
+const emit = defineEmits(['reset', 'updateFilter'])
 
 const { scrollToTop } = useScroll()
 
@@ -92,6 +92,11 @@ const rooms = [
     enabled: false,
   },
 ]
+
+const changeRoom = (value: number) => {
+  selectedRoomQuantity.value = value
+  emit('updateFilter')
+}
 </script>
 
 <style scoped>

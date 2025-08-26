@@ -2,6 +2,8 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
+    '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
   ],
   devtools: { enabled: true },
   css: ['~/assets/reset.css', '~/assets/main.scss'],

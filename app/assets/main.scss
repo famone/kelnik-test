@@ -327,9 +327,20 @@ body{
     }
   }
 
-  & span {
+  & .gray {
     color: rgba($main-font, 0.5);
   }
+  & .unit {
+    @media (min-width: 1440px) {
+      display: none;
+    }
+  }
+}
+
+.not-found{
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba($main-font, 0.5);
 }
 
 .load-more-btn{
