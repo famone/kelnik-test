@@ -1,0 +1,36 @@
+/* Reset браузерных стилей */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  transition: all .2S ease-in-out;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all .2S ease-in-out;
+}
+
+ul, ol {
+  list-style: none;
+}
